@@ -19,32 +19,21 @@ class Words extends Component {
    */
   randomWords = (items) => {
     let words = items[Math.floor(Math.random()*items.length)];
+    let listOfCharacters = words.split('');
     return this.setState({
       displayWord: words,
+      listOfCharacters: listOfCharacters
     })
   }
 
-  // function to count word + space -> render '_'
-
-  secretWord = (words) => {
-    console.log(words)
-   words.map(character => {
-    console.log(character)
-     return this.setState({
-      listOfCharacters: this.state.listOfCharacters.push(character)
-     })
-   });
-  }
-
-
   render (){
+    const { listOfCharacters } = this.state;
     return (
       <React.Fragment>
         {this.state.displayWord}
         {this.state.listOfCharacters.length}
-        {this.secretWord(this.state.listOfCharacters)}
         <section className=''>
-          <p>{this.state.displayWord}</p>
+          <p>{listOfCharacters.map(character => '_')}</p>
         </section>
       </React.Fragment>
     )
