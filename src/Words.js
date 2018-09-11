@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
+import Keyboard from './Keyboard';
 
 class Words extends Component {
   constructor (props) {
     super (props);
     this.state = {
-      listOfWords: ['hello', 'javascript', 'souris', 'chapeau', 'peau'],
-      displayWord: '',
+      listOfWords: ['hello', 'javascript', 'souris', 'chapeau-melon'],
       listOfCharacters: [],
+      charactersToFind: [],
+      displayWord: ''
     }
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.randomWords(this.state.listOfWords);
   }
 
@@ -20,20 +22,48 @@ class Words extends Component {
   randomWords = (items) => {
     let words = items[Math.floor(Math.random()*items.length)];
     let listOfCharacters = words.split('');
+    let displayCharacters = listOfCharacters.map(character => {
+      if(character === '-') { 
+        return '-'
+      } else {
+        return '_'
+      }
+    })
     return this.setState({
       displayWord: words,
-      listOfCharacters: listOfCharacters
+      listOfCharacters: listOfCharacters,
+      charactersToFind: displayCharacters
     })
   }
 
+  
+
+  findCharacter = (str) => {
+    const { listOfCharacters, charactersToFind } = this.state;
+    return listOfCharacters.map((item, i) => {
+     if (item.toUpperCase() === str) {
+      this.setState({
+        charactersToFind: charactersToFind.splice(i, 1, str)
+       }, () => {
+        console.log(charactersToFind)
+       });
+       
+     }
+    })
+   
+  }
+
   render (){
-    const { listOfCharacters } = this.state;
+    const { listOfCharacters, charactersToFind } = this.state;
+   
     return (
       <React.Fragment>
         {this.state.displayWord}
-        {this.state.listOfCharacters.length}
         <section className=''>
-          <p>{listOfCharacters.map(character => '_')}</p>
+          <p>{charactersToFind.map((item) => item)}</p>
+        </section>
+        <section>
+          <Keyboard word={listOfCharacters} findCharacter={this.findCharacter}/>
         </section>
       </React.Fragment>
     )

@@ -22,3 +22,36 @@ main {
 h1 {
   text-align: center;
 }
+
+#keyboard {
+  max-width: 80%;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  text-align: center;
+  div {
+    display: inline-block;
+    background-color: #e3e3e3;
+    padding: 0.7rem 1.2rem;
+    -webkit-box-shadow: 1px 1px 1px 1px #cdcdcd;
+    box-shadow: 1px 1px 1px 1px #cdcdcd;
+    margin: 0.5rem 0.8rem;
+    width: 2rem;
+    &:hover {
+      background-color: #b4b4b4;
+      box-shadow: 0px 1px 3px 3px #aeaeae;
+      cursor: pointer;
+    }
+    &.selected {
+      background-color: #8dd9f1;
+      box-shadow: inherit;
+      color: #ffffff;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    &.disabled {
+      background-color: #fafafa;
+      box-shadow: inherit;
+      border: 1px dashed #c4c4c4;
+    }
+  }
+}
