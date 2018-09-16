@@ -1,8 +1,12 @@
+$blue: #8dd9f1;
+$dark-blue: #03afe7;
+$light-grey: #fafafa;
+
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-  background-color: #fafafa;
+  background-color: $light-grey;
 }
 main {
   background-color: white;
@@ -11,22 +15,50 @@ main {
   margin: 0 auto;
   box-shadow: 0px 1px 7px 1px #cecece;
   section {
-    padding: 0.5rem 0 0 1rem;
+    text-align: center;
+    margin-top: 3rem;
+    &.guess-word {
+      padding-left: 1.1rem;
+    }
     p {
       text-align: center;
-      letter-spacing: 2rem;
+      padding-top: 3rem;
+      &.guess {
+        letter-spacing: 1.5rem;
+        word-wrap: break-word;
+      }
+    }
+    .win {
+      padding-bottom: 4rem;
+      h2 {
+        padding: 0 2rem;
+        line-height: 2.5rem;
+      }
+    }
+    .cta-win {
+      padding: 1rem;
+      color: white;
+      font-size: 18px;
+      border: inherit;
+      cursor: pointer;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      background-color: $dark-blue;
+      box-shadow: 4px 7px 3px #195a8f45;
     }
   }
 }
 
 h1 {
   text-align: center;
+  color: $dark-blue;
 }
 
 #keyboard {
-  max-width: 80%;
+  max-width: 90%;
   margin: 0 auto;
-  padding: 1rem 2rem;
+  padding: 1rem 1rem 3rem 1rem;
   text-align: center;
   div {
     display: inline-block;
@@ -42,16 +74,26 @@ h1 {
       cursor: pointer;
     }
     &.selected {
-      background-color: #8dd9f1;
+      background-color: $blue;
+      border: 1px solid $blue;
       box-shadow: inherit;
       color: #ffffff;
       font-weight: bold;
       cursor: pointer;
     }
     &.disabled {
-      background-color: #fafafa;
+      background-color: $light-grey;
       box-shadow: inherit;
+      color: #6d6d6d;
       border: 1px dashed #c4c4c4;
+      pointer-events: none;
+    }
+    &.active {
+      background-color: $blue;
+      box-shadow: inherit;
+      color: white;
+      pointer-events: none;
+      border: 1px solid $blue;
     }
   }
 }

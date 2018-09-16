@@ -8,7 +8,8 @@ class Keyboard extends Component {
       word: props.word,
       keyboard: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
       selectedStr: '',
-      badCharacters: []
+      badCharacters: [],
+      goodCharacters: [],
     };
   }
 
@@ -37,10 +38,12 @@ class Keyboard extends Component {
         badCharacters: [...this.state.badCharacters, characterToUpperCase]
       });
     } else {
+      this.setState({
+        goodCharacters: [...this.state.goodCharacters, characterToUpperCase]
+      })
       this.props.findCharacter(characterToUpperCase)
     }
    
-    
   }
 
   render () {
@@ -52,7 +55,8 @@ class Keyboard extends Component {
             className={
               classNames(
                 {'selected': this.state.selectedStr === character},
-                /* {'disabled': this.state.badCharacters} */
+                {'disabled': !!this.state.badCharacters.find(str => str === character)},
+                {'active': !!this.state.goodCharacters.find(str => str === character)}
               )} 
             onClick={this.handleChange}
             > 
@@ -62,11 +66,6 @@ class Keyboard extends Component {
     }
     return (
       <div id='keyboard'>
-        <ul>
-          <li>word : {this.state.word}</li>
-          <li>character : {this.state.selectedStr} </li>
-          <li>bad : {this.state.badCharacters.map(item => item)}</li>
-        </ul>
         {characters()}
       </div>
     )
