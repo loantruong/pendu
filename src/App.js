@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
+import Words from './Words';
 
 class App extends Component {
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Hangman game</h1>
+      <React.Fragment>
+        <header>
+          <h1>Hangman game</h1>
         </header>
-      </div>
+        <main>
+          <Words />
+        </main>
+      </React.Fragment>
     );
   }
 }
