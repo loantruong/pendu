@@ -40,17 +40,14 @@ class Words extends Component {
 
   findCharacter = (str) => {
     const { listOfCharacters, charactersToFind } = this.state;
+
     return listOfCharacters.map((item, i) => {
      if (item.toUpperCase() === str) {
-      this.setState({
-        charactersToFind: charactersToFind.splice(i, 1, str)
-       }, () => {
-        console.log(charactersToFind)
-       });
-       
-     }
-    })
-   
+      charactersToFind[i] = str;
+      return this.setState({
+        charactersToFind: [...charactersToFind]
+      });
+     }});    
   }
 
   render (){
